@@ -1,0 +1,28 @@
+Setting: Blackbird Creek (II)
+TXT ABOUT SETTING
+Player Species: Generic Native Fish
+TXT ABOUT SPECIES
+Invasive Species: Generic Invasive Species
+TXT ABOUT INVASIVE SPECIES
+Type of Pollution: Chemical Spill
+Chemical spills are harmful to natural environments
+What is the setting of this level?
+What is the native species for this level?
+What is the invasive species for this level?
+What is the type of pollution in this level?
+Blackbird Creek
+Generic native fish
+Generic invasive species
+Chemical spill
+Whiteclay Creek
+Brandywine River
+Unnamed Creek
+Wrong species 1
+Wrong species 2
+Wrong species 3
+Wrong species 1
+Wrong species 2
+Wrong species 3
+Tire
+Oil spill
+Plastic bag
