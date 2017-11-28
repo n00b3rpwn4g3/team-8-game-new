@@ -51,7 +51,7 @@ public class Game {
 		numInvasiveEnemy = (int) (.5*numEnemies);
 		numPollutionEnemy = numEnemies-numInvasiveEnemy;
 		listEnemies = new Enemy[numEnemies];
-        player = new Player(new Coordinates(windowWidth/2, windowHeight/2));
+        player = new Player(new Coordinates(windowWidth/2, windowHeight/2),2*playerCollisionRad);
         initListEnemies();
 		
 	}

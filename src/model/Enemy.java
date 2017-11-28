@@ -5,7 +5,6 @@ import java.awt.Graphics;
 
 public class Enemy{
 
-
     Coordinates coordinates;
 
     final MovingVector movingVector;
@@ -39,7 +38,7 @@ public class Enemy{
     }
     
     public double getMovingAngle(){
-    	return movingAngle;
+    		return movingAngle;
     }
 
     public Coordinates getCoordinates() {
@@ -51,11 +50,10 @@ public class Enemy{
 	}
     
     public int getEnemyDiameter(){
-    	return enemyDiameter;
-
+    		return enemyDiameter;
 	}
     
     public boolean checkEnemyType(){
-    	return isInvasive;
+    		return isInvasive;
     }
 }
