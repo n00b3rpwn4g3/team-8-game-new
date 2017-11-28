@@ -24,8 +24,8 @@ public class EnemyView {
     private Enemy enemyData;
 
     public EnemyView(Enemy enemy, Image enemyGraphic) {
-    	enemyData = enemy;
-    	this.enemyGraphic = enemyGraphic;
+    		enemyData = enemy;
+    		this.enemyGraphic = enemyGraphic;
         this.coordinates = enemy.getCoordinates();
         this.movingVector = enemy.getMovingVector();
         this.ballDiameter = enemy.getEnemyDiameter();
@@ -37,12 +37,12 @@ public class EnemyView {
 
     public void draw(Graphics g) {
     	
-//    	Graphics2D g2 = (Graphics2D) g;
-//        AffineTransform at = AffineTransform.getTranslateInstance((int)(coordinates.getxPos()- ballDiameter/2),
-//        		(int)(coordinates.getyPos() - ballDiameter/2));
-//        at.rotate(Math.toRadians(enemyData.getMovingAngle()+90))
-//        g2.drawImage(enemyGraphic,at, null);
-    g.drawImage(enemyGraphic, (int)(coordinates.getxPos()- ballDiameter/2), (int)(coordinates.getyPos() - ballDiameter/2), null);
+    		Graphics2D g2 = (Graphics2D) g;
+    		AffineTransform at = AffineTransform.getTranslateInstance((coordinates.getxPos() - ballDiameter/2),
+    				(coordinates.getyPos() - ballDiameter/2));
+    		at.rotate(Math.toRadians(enemyData.getMovingAngle() + 90));
+    		g2.drawImage(enemyGraphic, at, null);
+//		g.drawImage(enemyGraphic, (int)(coordinates.getxPos() - ballDiameter/2), (int)(coordinates.getyPos() - ballDiameter/2), null);
     }
 
 }
