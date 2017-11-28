@@ -31,7 +31,7 @@ public class Enemy{
     
     public void initMovingAngle(){
         movingAngle = (float) Math.toDegrees(Math.atan2(movingVector.getY(),
-                movingVector.getY()));
+                movingVector.getX()));
 
         if(movingAngle < 0){
             movingAngle += 360;
