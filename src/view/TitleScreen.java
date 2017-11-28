@@ -8,7 +8,18 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -16,6 +27,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+import sun.audio.AudioData;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
+import sun.audio.ContinuousAudioDataStream;
 import view.ScreenPanel.Screens;
 
 public class TitleScreen extends ScreenPanel implements ActionListener{
@@ -32,6 +47,10 @@ public class TitleScreen extends ScreenPanel implements ActionListener{
 		this.setMinimumSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
 		bgImage = uploadImage(s.name());
 		buildTitleScreen();
+		//music
+		ContinuousAudioDataStream loop = null;
+	    InputStream in = null;
+		playSound("sounds/bgMusic.wav");
 		setVisible(true);
 		}
 	
@@ -64,7 +83,31 @@ public class TitleScreen extends ScreenPanel implements ActionListener{
 	}
 	
 	public void actionPerformed(ActionEvent e){
-
+		playSound("sounds/button.wav");
 		((GameBoard) parentBoard).changeScreenTo(Screens.MAIN);
 	}
+	
+    void playSound(String soundFile) {
+        File f = new File("./" + soundFile);
+        AudioInputStream audioIn;
+		try {
+			audioIn = AudioSystem.getAudioInputStream(f.toURI().toURL());
+	        Clip clip = AudioSystem.getClip();
+	        clip.open(audioIn);
+	        clip.start();
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedAudioFileException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (LineUnavailableException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
+
+    }
 }

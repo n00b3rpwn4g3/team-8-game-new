@@ -3,9 +3,17 @@ package view;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -67,6 +75,7 @@ public class GameBoard extends JFrame implements ActionListener {
 			currentScreen = new MainMenuScreen(Screens.MAIN, this);
 			currentScreen.setVisible(true);
 			add(currentScreen);
+			
 			isGame = false;
 			break;
 		}
@@ -143,8 +152,10 @@ public class GameBoard extends JFrame implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		playSound("sounds/button2.wav");
 		switch (e.getActionCommand()) {
 		case ("quit"): {
+			playSound("sounds/button2.wav");
 			if (isGame)
 				((LevelScreen) currentScreen).pause();
 			int choice = JOptionPane.showConfirmDialog(this,
@@ -158,6 +169,7 @@ public class GameBoard extends JFrame implements ActionListener {
 			break;
 		}
 		case ("exit"): {
+			playSound("sounds/button2.wav");
 			if (isGame)
 				((LevelScreen) currentScreen).pause();
 			int choice = JOptionPane.showConfirmDialog(this,
@@ -171,6 +183,7 @@ public class GameBoard extends JFrame implements ActionListener {
 			break;
 		}
 		case("restart"):{
+			playSound("sounds/button2.wav");
 			if (isGame){
 				((LevelScreen) currentScreen).pause();
 			int choice = JOptionPane.showConfirmDialog(this,
@@ -187,6 +200,7 @@ public class GameBoard extends JFrame implements ActionListener {
 		
 		}
 		case ("changeDiff"): {
+			playSound("sounds/button2.wav");
 			if (isGame)
 				((LevelScreen) currentScreen).pause();
 			int choice = JOptionPane.showConfirmDialog(this,
@@ -203,12 +217,14 @@ public class GameBoard extends JFrame implements ActionListener {
 			break;
 		}
 		case ("showCredits"): {
+			playSound("sounds/button2.wav");
 			if (isGame)
 				((LevelScreen) currentScreen).pause();
 			buildCreditWindow();
 			break;
 		}
 		case ("exit2Tutorial"): {
+			playSound("sounds/button2.wav");
 			if (isGame)
 				((LevelScreen) currentScreen).pause();
 			int choice = JOptionPane.showConfirmDialog(this,
@@ -222,6 +238,7 @@ public class GameBoard extends JFrame implements ActionListener {
 			break;
 		}
 		case ("controls"): {
+			playSound("sounds/button2.wav");
 			if (isGame)
 				((LevelScreen) currentScreen).pause();
 			JOptionPane.showMessageDialog(this, "Slide the mouse in the direction you want to move to avoid enemies");
@@ -301,4 +318,31 @@ public class GameBoard extends JFrame implements ActionListener {
 		customJMenuBar.add(options);
 		customJMenuBar.add(help);
 	}
+
+    void playSound(String soundFile) {
+        File f = new File("./" + soundFile);
+        AudioInputStream audioIn;
+		try {
+			audioIn = AudioSystem.getAudioInputStream(f.toURI().toURL());
+	        Clip clip = AudioSystem.getClip();
+	        clip.open(audioIn);
+	        clip.start();
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedAudioFileException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (LineUnavailableException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
+
+    }
+
 }
+
+//Apologize by Robbero (c) copyright 2017 Licensed under a Creative Commons Attribution Noncommercial  (3.0) license. http://dig.ccmixter.org/files/Robbero/56734 

@@ -2,7 +2,15 @@ package model;
 
 import java.awt.Point;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -227,6 +235,7 @@ public class Game {
             }
 
             if(checkForCollision(listEnemies[i])) {
+            	playSound("sounds/collide.wav");
                 int currentHealthPoints = getHealthBar().getCurrentPoints();
                 getHealthBar().setCurrentPoints(currentHealthPoints - 30);
                 if(getHealthBar().getCurrentPoints()<=0 && notQ) {
@@ -316,6 +325,29 @@ public class Game {
             Enemy anEnemy = new Enemy(ballCoordinates, movingVector, 2*enemyCollisionRad, false);
             listEnemies[numInvasiveEnemy+i] = anEnemy;
         }
+    }
+    void playSound(String soundFile) {
+        File f = new File("./" + soundFile);
+        AudioInputStream audioIn;
+		try {
+			audioIn = AudioSystem.getAudioInputStream(f.toURI().toURL());
+	        Clip clip = AudioSystem.getClip();
+	        clip.open(audioIn);
+	        clip.start();
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedAudioFileException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (LineUnavailableException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
+
     }
     
     public Enemy[] getListEnemies() {
